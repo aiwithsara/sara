@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saraswathy K - Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Brand Colors extracted from styles.css */
+            --primary: #4c1d95;
+            --primary-light: #7c3aed;
+            --accent: #fb7185;
+            --accent-tertiary: #2dd4bf;
+            --text-dark: #12121a;
+            --text-gray: #555555;
+            --text-light: #ffffff;
+            --bg-light: #f8fafd;
+            --border-light: #e2e8f0;
+            
+            /* Gradient */
+            --brand-gradient: linear-gradient(135deg, #4c1d95 0%, #7c3aed 50%, #fb7185 100%);
+            --header-gradient: linear-gradient(135deg, #0a0a0f 0%, #1e1b4b 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background-color: #eee; /* Web preview bg */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        /* A4 Page Setup */
+        .page {
+            background: white;
+            width: 210mm;
+            min-height: 297mm;
+            padding: 0; /* Removing padding from body to allow full-width header */
+            margin: 20px auto;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-padding {
+            padding: 0 15mm 15mm 15mm;
+            flex: 1;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                width: 210mm;
+                min-height: 297mm;
+                page-break-after: always;
+            }
+            .page:last-child {
+                page-break-after: auto;
+            }
+        }
+
+        /* Header - Colorful & Bold */
+        header {
+            background: var(--brand-gradient);
+            color: white;
+            padding: 15mm 15mm 10mm 15mm;
+            margin-bottom: 8mm;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* Decorative shape bottom */
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .header-content h1 {
+            font-size: 32pt;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-content .subtitle {
+            font-size: 14pt;
+            color: rgba(255,255,255,0.9);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .contact-info {
+            text-align: right;
+            font-size: 9pt;
+            color: rgba(255,255,255,0.95);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+        
+        .contact-item a {
+             color: inherit;
+             text-decoration: none;
+             transition: 0.2s;
+        }
+        
+        .contact-item svg {
+            color: var(--accent-tertiary); /* Pop of teal */
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 14pt;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-light), transparent);
+            border-radius: 2px;
+        }
+        
+        .section-title svg {
+            color: var(--accent);
+        }
+
+        /* Summary */
+        .summary p {
+            text-align: justify;
+            color: var(--text-gray);
+            line-height: 1.6;
+            background: var(--bg-light);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-light);
+        }
+
+        /* Experience */
+        .job {
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .job::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 2px;
+            height: 100%;
+            background: var(--border-light);
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -4px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid var(--accent);
+            z-index: 1;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+
+        .job-title {
+            font-size: 12pt;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .company {
+            font-weight: 600;
+            color: var(--primary-light);
+        }
+
+        .date {
+            font-size: 9pt;
+            font-weight: 600;
+            color: var(--accent);
+            background: rgba(251, 113, 133, 0.1);
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .job ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 8px;
+        }
+
+        .job li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 5px;
+            color: var(--text-gray);
+            font-size: 9.5pt;
+        }
+
+        .job li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            padding: 12px;
+            box-shadow: 0 4px 6px -4px rgba(0,0,0,0.05);
+        }
+
+        .skill-category h4 {
+            font-size: 10pt;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            color: var(--primary);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 8.5pt;
+            font-weight: 500;
+            border: 1px solid #eef2f6;
+            transition: all 0.2s;
+        }
+        
+        /* Specific tag colors based on category could be nice, but keeping clean for now */
+
+        /* Education */
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .education-item {
+            background: var(--bg-light);
+            padding: 12px;
+            border-radius: 8px;
+            border-bottom: 3px solid var(--primary-light);
+        }
+
+        .degree {
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 10.5pt;
+            margin-bottom: 2px;
+        }
+        
+        .uni {
+            color: var(--text-gray);
+            font-size: 9.5pt;
+        }
+        
+        .edu-date {
+            color: var(--accent);
+            font-size: 9pt;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .project-item {
+            border: 1px solid var(--border-light);
+            border-left: 4px solid var(--accent);
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            background: white;
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        
+        .project-title {
+            font-weight: 700;
+            font-size: 10.5pt;
+            color: var(--primary);
+        }
+
+        .project-desc {
+            font-size: 9.5pt;
+            color: var(--text-gray);
+            line-height: 1.4;
+        }
+        
+        .project-type {
+            font-size: 8pt;
+            text-transform: uppercase;
+            color: white;
+            background: var(--accent);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Testimonials */
+        .testimonial-box {
+            background: linear-gradient(to right, #fdf4f6, #f7f5ff);
+            padding: 15px;
+            border-radius: 8px;
+            position: relative;
+            margin-top: 5px;
+        }
+        
+        .quote-icon {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: white;
+            padding: 0 5px;
+            color: var(--accent);
+            font-size: 20pt;
+            line-height: 1;
+            font-family: serif;
+        }
+
+        /* Footer / Page number */
+        .page-footer {
+            text-align: center;
+            font-size: 8pt;
+            color: #999;
+            margin-top: auto;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+
+        /* Utility */
+        .spacer { height: 15px; }
+        .small-spacer { height: 8px; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Page 1 -->
+    <div class="page">
+        <header>
+            <div class="header-content">
+                <h1>Saraswathy K</h1>
+                <div class="subtitle">Event & Marketing Professional</div>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>Chennai, India</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <div class="contact-item">
+                     <a href="tel:+917418106791">+91 74181 06791</a>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </div>
+                <div class="contact-item">
+                    <a href="mailto:aiwithsaratamil@gmail.com">aiwithsaratamil@gmail.com</a>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <div class="contact-item">
+                    <a href="https://www.linkedin.com/in/saraswathy-k" target="_blank">linkedin.com/in/saraswathy-k</a>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-padding">
+            <section class="section summary">
+                <h2 class="section-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    Professional Summary
+                </h2>
+                <p>
+                    Driven and highly organized event and marketing professional with over 5 years of experience in end-to-end event planning, execution, and corporate MC hosting. Specializing in transforming corporate visions into memorable experiences, I combine creative event strategies with precise logistical management. Adept in digital marketing, including SEO, social media, and campaign management, ensuring a cohesive brand presence across all channels.
+                </p>
+            </section>
+
+            <section class="section skills">
+                <h2 class="section-title">
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                    Core Competencies
+                </h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Event Management</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">End-to-End Planning</span>
+                            <span class="skill-tag">Vendor Management</span>
+                            <span class="skill-tag">Logistics & Ops</span>
+                            <span class="skill-tag">Budgeting</span>
+                            <span class="skill-tag">On-Ground Execution</span>
+                            <span class="skill-tag">Team Leadership</span>
+                        </div>
+                    </div>
+                     <div class="skill-category">
+                        <h4>Marketing & Comms</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Digital Marketing</span>
+                            <span class="skill-tag">SEO & SEM</span>
+                            <span class="skill-tag">Social Media Strategy</span>
+                            <span class="skill-tag">Content Creation</span>
+                            <span class="skill-tag">Internal Comms</span>
+                            <span class="skill-tag">Public Speaking (MC)</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Tools & Tech</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">MS Office Suite</span>
+                            <span class="skill-tag">Google Analytics</span>
+                            <span class="skill-tag">CRM Tools</span>
+                            <span class="skill-tag">n8n (Automation)</span>
+                            <span class="skill-tag">GitHub</span>
+                            <span class="skill-tag">Vercel</span>
+                        </div>
+                    </div>
+                     <div class="skill-category">
+                        <h4>Soft Skills</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Stakeholder Management</span>
+                            <span class="skill-tag">Problem Solving</span>
+                            <span class="skill-tag">Cross-functional Collab</span>
+                            <span class="skill-tag">Time Management</span>
+                            <span class="skill-tag">Adaptability</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section experience">
+                <h2 class="section-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    Professional Experience
+                </h2>
+
+                <div class="job">
+                    <div class="timeline-dot"></div>
+                    <div class="job-header">
+                        <div>
+                            <span class="job-title">Digital Marketing & Events Specialist</span>
+                             <span class="company"> | Digital AI 360</span>
+                        </div>
+                        <span class="date">July 2022 - Present</span>
+                    </div>
+                    <ul>
+                        <li>Develop and execute comprehensive digital marketing strategies including SEO, SEM, and social media campaigns to drive brand visibility.</li>
+                        <li>Manage Google Ads and Meta Ads campaigns, optimizing for maximum ROI and consistent lead generation.</li>
+                        <li>Lead end-to-end planning and execution of corporate events, conferences, and marketing initiatives, ensuring seamless delivery.</li>
+                        <li>Build and manage automation workflows using n8n for marketing and operational efficiency.</li>
+                        <li>Handle deployment and maintenance of web applications using Vercel.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="timeline-dot"></div>
+                    <div class="job-header">
+                         <div>
+                            <span class="job-title">Operations Associate</span>
+                            <span class="company"> | Helios Dax Solutions Pvt Ltd</span>
+                        </div>
+                        <span class="date">Feb 2022 - June 2022</span>
+                    </div>
+                    <ul>
+                        <li>Coordinated logistics and vendor management for internal events and client meetings.</li>
+                        <li>Managed scheduling, attendee communication, and cross-functional team coordination.</li>
+                        <li>Prepared comprehensive event checklists, timelines, and briefing notes for executive leadership.</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+        
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+        <!-- Replicating header decorative strip for continuity -->
+        <div style="height: 15px; background: var(--brand-gradient); margin-bottom: 30px;"></div>
+
+        <div class="content-padding">
+            <section class="section experience">
+                <h2 class="section-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    Experience (Continued)
+                </h2>
+                
+                 <div class="job">
+                    <div class="timeline-dot"></div>
+                    <div class="job-header">
+                         <div>
+                            <span class="job-title">Process Associate</span>
+                            <span class="company"> | HCL Tech</span>
+                        </div>
+                        <span class="date">Aug 2021 - Jan 2022</span>
+                    </div>
+                    <ul>
+                        <li>Provided technical support and issue resolution using the Zendesk ticketing system, ensuring high customer satisfaction.</li>
+                        <li>Managed SAP-based workflows for service and sales order processing with 100% data accuracy.</li>
+                        <li>Handled client calls to clarify order requirements and address escalations professionally.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="timeline-dot"></div>
+                    <div class="job-header">
+                         <div>
+                            <span class="job-title">Professional Emcee & Event Organizer</span>
+                            <span class="company"> | Freelance</span>
+                        </div>
+                        <span class="date">2016 - Present</span>
+                    </div>
+                    <ul>
+                        <li>Successfully hosted 200+ events including corporate conferences, award ceremonies, and product launches for leading MNCs.</li>
+                        <li>Collaborate with event planners to develop detailed event scripts, run-of-show, and engagement strategies.</li>
+                        <li>Manage on-stage transitions, speaker introductions, and interactive sessions to maintain high audience energy.</li>
+                        <li>Built lasting relationships with corporate clients across technology, IT services, and SaaS sectors.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section projects">
+                <h2 class="section-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    Key Projects & Events
+                </h2>
+                <div class="projects-grid">
+                    <div class="project-item">
+                        <div class="project-header">
+                            <div class="project-title">Annual Tech Summit 2024</div>
+                            <span class="project-type">Conference</span>
+                        </div>
+                        <div class="project-desc">Led complete planning and execution for a 500+ attendee technology conference. Served as the primary MC, ensuring a professional and engaging atmosphere.</div>
+                    </div>
+                    <div class="project-item">
+                         <div class="project-header">
+                            <div class="project-title">Executive Leadership Retreat</div>
+                             <span class="project-type">Strategy</span>
+                        </div>
+                        <div class="project-desc">Organized an intimate 2-day strategy session for senior leadership. Managed high-touch logistics, VIP experiences, and confidential environments.</div>
+                    </div>
+                     <div class="project-item">
+                         <div class="project-header">
+                            <div class="project-title">Annual Excellence Awards</div>
+                             <span class="project-type">Awards</span>
+                        </div>
+                        <div class="project-desc">MC hosted and coordinated a prestigious annual awards ceremony for 200+ guests. Managed the flow of the event and award distribution logistics.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section education">
+                <h2 class="section-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                    Education
+                </h2>
+                <div class="education-grid">
+                    <div class="education-item">
+                        <div class="degree">Master of Business Administration (MBA)</div>
+                        <div class="uni">DR MGR University</div>
+                        <div class="edu-date">2019 - 2021</div>
+                    </div>
+                     <div class="education-item">
+                        <div class="degree">Bachelor of Computer Application (BCA)</div>
+                        <div class="uni">Madras University</div>
+                        <div class="edu-date">2016 - 2019</div>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="spacer"></div>
+            
+            <section class="section testimonials">
+                 <h2 class="section-title">
+                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                     Endorsement
+                 </h2>
+                 <div class="testimonial-box">
+                    <span class="quote-icon">“</span>
+                     <div style="font-style: italic; color: var(--text-dark); font-size: 9.5pt; margin-top: 5px;">
+                         "Sara's professionalism and energy as an MC transformed our annual conference... She truly understands corporate events."
+                     </div>
+                     <div style="font-weight: 600; font-style: normal; display: block; margin-top: 8px; font-size: 9pt; color: var(--primary);">
+                         — Rajesh Kumar, Event Director, Tech Summit India
+                     </div>
+                 </div>
+            </section>
+        </div>
+    </div>
+
+</body>
+</html>
