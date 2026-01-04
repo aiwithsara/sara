@@ -9,20 +9,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Brand Colors extracted from styles.css */
-            --primary: #4c1d95;
-            --primary-light: #7c3aed;
-            --accent: #fb7185;
-            --accent-tertiary: #2dd4bf;
-            --text-dark: #12121a;
-            --text-gray: #555555;
+            /* Brand Colors - Premium Midnight Luxury */
+            --primary: #0b0f1e; /* Deep Navy text */
+            --primary-light: #475569; /* Slate for subtitles */
+            --accent: #d4af37; /* Metallic Gold */
+            --accent-tertiary: #c5a059; /* Bronze */
+            --text-dark: #0f172a;
+            --text-gray: #334155;
             --text-light: #ffffff;
-            --bg-light: #f8fafd;
+            --bg-light: #f8fafc; /* Crisp white-blue tint */
             --border-light: #e2e8f0;
             
             /* Gradient */
-            --brand-gradient: linear-gradient(135deg, #4c1d95 0%, #7c3aed 50%, #fb7185 100%);
-            --header-gradient: linear-gradient(135deg, #0a0a0f 0%, #1e1b4b 100%);
+            --brand-gradient: linear-gradient(135deg, #050511 0%, #0b0f1e 40%, #172033 100%);
+            --header-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         }
 
         * {
@@ -50,8 +50,8 @@
         .page {
             background: white;
             width: 210mm;
-            min-height: 297mm;
-            padding: 0; /* Removing padding from body to allow full-width header */
+            height: 297mm;
+            padding: 0;
             margin: 20px auto;
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
             position: relative;
@@ -61,8 +61,9 @@
         }
 
         .content-padding {
-            padding: 0 15mm 15mm 15mm;
+            padding: 0 15mm 10mm 15mm;
             flex: 1;
+            overflow: hidden; /* Prevent content from pushing the page height */
         }
 
         @page {
@@ -73,13 +74,16 @@
         @media print {
             body {
                 background: white;
+                margin: 0;
+                padding: 0;
             }
             .page {
                 box-shadow: none;
                 margin: 0;
                 width: 210mm;
-                min-height: 297mm;
+                height: 297mm;
                 page-break-after: always;
+                page-break-inside: avoid;
             }
             .page:last-child {
                 page-break-after: auto;
@@ -143,6 +147,33 @@
             filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
         }
 
+        /* Portfolio Badge */
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 11pt;
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: 0.3s;
+        }
+        
+        .portfolio-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            background: var(--bg-light);
+        }
+        
+        .portfolio-link svg {
+            color: var(--accent);
+        }
+
         /* Sections */
         .section {
             margin-bottom: 25px;
@@ -163,9 +194,9 @@
         .section-title::after {
             content: '';
             flex: 1;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-light), transparent);
-            border-radius: 2px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0.5;
         }
         
         .section-title svg {
@@ -179,8 +210,8 @@
             line-height: 1.6;
             background: var(--bg-light);
             padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary-light);
+            border-radius: 4px;
+            border-left: 3px solid var(--accent);
         }
 
         /* Experience */
@@ -227,16 +258,18 @@
 
         .company {
             font-weight: 600;
-            color: var(--primary-light);
+            color: var(--accent-tertiary);
+            font-family: 'DM Sans', sans-serif;
         }
 
         .date {
             font-size: 9pt;
             font-weight: 600;
-            color: var(--accent);
-            background: rgba(251, 113, 133, 0.1);
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.1); /* Gold tint */
             padding: 2px 8px;
-            border-radius: 12px;
+            border-radius: 4px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         .job ul {
@@ -300,7 +333,9 @@
             border-radius: 6px;
             font-size: 8.5pt;
             font-weight: 500;
-            border: 1px solid #eef2f6;
+            font-size: 8.5pt;
+            font-weight: 500;
+            border: 1px solid #e2e8f0;
             transition: all 0.2s;
         }
         
@@ -317,7 +352,9 @@
             background: var(--bg-light);
             padding: 12px;
             border-radius: 8px;
-            border-bottom: 3px solid var(--primary-light);
+            padding: 12px;
+            border-radius: 8px;
+            border-bottom: 2px solid var(--accent);
         }
 
         .degree {
@@ -348,7 +385,7 @@
 
         .project-item {
             border: 1px solid var(--border-light);
-            border-left: 4px solid var(--accent);
+            border-left: 3px solid var(--accent);
             padding: 12px 15px;
             border-radius: 0 8px 8px 0;
             background: white;
@@ -428,6 +465,10 @@
             <div class="header-content">
                 <h1>Saraswathy K</h1>
                 <div class="subtitle">Event & Marketing Professional</div>
+                <a href="https://saraswathy.vercel.app/" class="portfolio-link" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    Visit My Portfolio
+                </a>
             </div>
             <div class="contact-info">
                 <div class="contact-item">
@@ -441,10 +482,6 @@
                 <div class="contact-item">
                     <a href="mailto:aiwithsaratamil@gmail.com">aiwithsaratamil@gmail.com</a>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                </div>
-                <div class="contact-item">
-                    <a href="https://www.linkedin.com/in/saraswathy-k" target="_blank">linkedin.com/in/saraswathy-k</a>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                 </div>
             </div>
         </header>
@@ -536,21 +573,7 @@
                     </ul>
                 </div>
 
-                <div class="job">
-                    <div class="timeline-dot"></div>
-                    <div class="job-header">
-                         <div>
-                            <span class="job-title">Operations Associate</span>
-                            <span class="company"> | Helios Dax Solutions Pvt Ltd</span>
-                        </div>
-                        <span class="date">Feb 2022 - June 2022</span>
-                    </div>
-                    <ul>
-                        <li>Coordinated logistics and vendor management for internal events and client meetings.</li>
-                        <li>Managed scheduling, attendee communication, and cross-functional team coordination.</li>
-                        <li>Prepared comprehensive event checklists, timelines, and briefing notes for executive leadership.</li>
-                    </ul>
-                </div>
+
             </section>
         </div>
         
@@ -568,6 +591,23 @@
                     Experience (Continued)
                 </h2>
                 
+
+                <div class="job">
+                    <div class="timeline-dot"></div>
+                    <div class="job-header">
+                         <div>
+                            <span class="job-title">Operations Associate</span>
+                            <span class="company"> | Helios Dax Solutions Pvt Ltd</span>
+                        </div>
+                        <span class="date">Feb 2022 - June 2022</span>
+                    </div>
+                    <ul>
+                        <li>Coordinated logistics and vendor management for internal events and client meetings.</li>
+                        <li>Managed scheduling, attendee communication, and cross-functional team coordination.</li>
+                        <li>Prepared comprehensive event checklists, timelines, and briefing notes for executive leadership.</li>
+                    </ul>
+                </div>
+
                  <div class="job">
                     <div class="timeline-dot"></div>
                     <div class="job-header">
@@ -610,22 +650,22 @@
                 <div class="projects-grid">
                     <div class="project-item">
                         <div class="project-header">
-                            <div class="project-title">Annual Tech Summit 2024</div>
-                            <span class="project-type">Conference</span>
+                            <div class="project-title">Vikatan Awards</div>
+                            <span class="project-type">Awards</span>
                         </div>
-                        <div class="project-desc">Led complete planning and execution for a 500+ attendee technology conference. Served as the primary MC, ensuring a professional and engaging atmosphere.</div>
+                        <div class="project-desc">Led complete planning and execution for a 500+ attendee awards ceremony, ensuring a professional and engaging atmosphere.</div>
                     </div>
                     <div class="project-item">
                          <div class="project-header">
-                            <div class="project-title">Executive Leadership Retreat</div>
-                             <span class="project-type">Strategy</span>
+                            <div class="project-title">Doctors Conference</div>
+                             <span class="project-type">Conference</span>
                         </div>
-                        <div class="project-desc">Organized an intimate 2-day strategy session for senior leadership. Managed high-touch logistics, VIP experiences, and confidential environments.</div>
+                        <div class="project-desc">Organized an 2-day conference for senior leadership. Managed high-touch logistics, VIP experiences, and confidential environments.</div>
                     </div>
                      <div class="project-item">
                          <div class="project-header">
-                            <div class="project-title">Annual Excellence Awards</div>
-                             <span class="project-type">Awards</span>
+                            <div class="project-title">Annual Day</div>
+                             <span class="project-type">Event</span>
                         </div>
                         <div class="project-desc">MC hosted and coordinated a prestigious annual awards ceremony for 200+ guests. Managed the flow of the event and award distribution logistics.</div>
                     </div>
@@ -653,21 +693,7 @@
             
             <div class="spacer"></div>
             
-            <section class="section testimonials">
-                 <h2 class="section-title">
-                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                     Endorsement
-                 </h2>
-                 <div class="testimonial-box">
-                    <span class="quote-icon">“</span>
-                     <div style="font-style: italic; color: var(--text-dark); font-size: 9.5pt; margin-top: 5px;">
-                         "Sara's professionalism and energy as an MC transformed our annual conference... She truly understands corporate events."
-                     </div>
-                     <div style="font-weight: 600; font-style: normal; display: block; margin-top: 8px; font-size: 9pt; color: var(--primary);">
-                         — Rajesh Kumar, Event Director, Tech Summit India
-                     </div>
-                 </div>
-            </section>
+
         </div>
     </div>
 
